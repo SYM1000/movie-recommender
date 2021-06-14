@@ -110,7 +110,7 @@ cosine_sim_director = cosine_similarity(count_matrix_director)
 
 
 # open the file in the write mode
-with open('recommendations_values', 'w', newline='') as file:
+with open('recommendations_values.csv', 'w', newline='') as file:
     # create the csv writer
     writer = csv.writer(file)
 
