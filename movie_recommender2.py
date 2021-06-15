@@ -52,8 +52,8 @@ cosine_sim_genres = cosine_similarity(count_matrix_genres)
 cosine_sim_director = cosine_similarity(count_matrix_director)
 
 # Here goes the movie the user wants
-user_movie = input("What movie do you like? \n")
-movie_user_likes = user_movie
+# user_movie = input("What movie do you like? \n")
+movie_user_likes = 'Avatar'
 
 ##Step 6: Get index of this movie from its title
 try:
