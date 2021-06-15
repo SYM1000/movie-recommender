@@ -1,7 +1,6 @@
 '''
 This version of the recommender returns a csv with all the values computed
 for all the movies, so the consulting time drops to constant.
-
 * This version generates a csv with all computed recommendations
 * This script was highly focused on improving execution time
 the first time was executed took 120 minutes, after performace improvments takes 2 minutes :)
