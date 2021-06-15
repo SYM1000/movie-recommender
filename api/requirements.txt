@@ -1,0 +1,6 @@
+flask
+flask-restful
+gunicorn
+numpy
+pandas
+scikit_learn
