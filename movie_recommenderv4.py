@@ -15,10 +15,8 @@ import os
 import time
 
 def get_recommendation_server(liked_movie, sorted):
-    start_time = time.time()
     df = pd.read_csv("movie_dataset.csv")
     all_movie_titles = df["title"].to_numpy() # Array with the name of all movies from the dataframe
-    print("--- esta mierda tarda %s seconds ---" % (time.time() - start_time))
 
     #Para hacer mas rapidas las consultas: Encontrar una manera de hacer que no se calucle todo esto del cosine y se acceda como constante
     # ya que mientras tengamos el mismo dataset, siempre va a ser lo mismo
