@@ -15,13 +15,12 @@ import os
 import time
 
 def get_recommendation_server(liked_movie, sorted):
-    # start_time = time.time()
     df = pd.read_csv("movie_dataset.csv")
     all_movie_titles = df["title"].to_numpy() # Array with the name of all movies from the dataframe
 
     #Para hacer mas rapidas las consultas: Encontrar una manera de hacer que no se calucle todo esto del cosine y se acceda como constante
     # ya que mientras tengamos el mismo dataset, siempre va a ser lo mismo
-
+    
     features = ['keywords', 'cast', 'genres', 'director']
 
     for feature in features:
@@ -42,8 +41,6 @@ def get_recommendation_server(liked_movie, sorted):
     cosine_sim_genres = cosine_similarity(count_matrix_genres)
     cosine_sim_director = cosine_similarity(count_matrix_director)
 
-    # print("--- computar el cosine tarda %s seconds ---" % (time.time() - start_time)) #This takes a lot of time
-
     try:
         movie_index = get_index_from_title(liked_movie, df) #Gustos del usuario
     except:
@@ -59,7 +56,7 @@ def get_recommendation_server(liked_movie, sorted):
 
     if sorted == False:
         return final_scores
-        
+      
     sorted_final_scores = sorted(final_scores, key=lambda x:x[1], reverse= True) # Peliculas ordernadas de mayor a menor gusto
     # print("--- Recommendations computed in %s seconds ---" % (time.time() - start_time))
     return sorted_final_scores

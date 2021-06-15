@@ -1,9 +1,7 @@
-from flask.scaffold import F
-from movie_recommenderv3 import get_recommendation
+from movie_recommenderv4 import get_recommendation_server
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
 import os
-from movie_recommenderv3 import get_recommendation
 
 app = Flask(__name__)
 api = Api(app)
@@ -12,9 +10,13 @@ class Recommendation(Resource):
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument('movie', required=True)
+        parser.add_argument('sorted', required=False) # need fix
         args = parser.parse_args()
 
-        recommendations = get_recommendation(args['movie'])
+        if args['sorted'] == "true": # need fix
+            recommendations = get_recommendation_server(args['movie'], True)
+        else:
+            recommendations = get_recommendation_server(args['movie'], False)
 
         if recommendations == False: # If movie was not found
             return{
