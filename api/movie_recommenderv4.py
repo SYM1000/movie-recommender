@@ -14,6 +14,7 @@ import os
 import time
 
 def get_recommendation_server(liked_movie, sorted):
+    start_time = time.time()
     df = pd.read_csv("movie_dataset.csv")
     all_movie_titles = df["title"].to_numpy() # Array with the name of all movies from the dataframe
 
@@ -54,6 +55,7 @@ def get_recommendation_server(liked_movie, sorted):
     final_scores = get_final_scores_server(all_movie_titles, similar_movies_keywords, similar_movies_cast, similar_movies_genres, similar_movies_director)
 
     if sorted == False:
+        print("--- calculado todo en  %s seconds ---" % (time.time() - start_time))
         return final_scores
       
     sorted_final_scores = sorted(final_scores, key=lambda x:x[1], reverse= True) # Peliculas ordernadas de mayor a menor gusto
@@ -228,3 +230,6 @@ def compute_recommendations_csv():
             i+=1
                 
     print("--- Recommendations computed in %s seconds ---" % (time.time() - start_time))
+
+
+get_recommendation_server("The Social Network", False)
